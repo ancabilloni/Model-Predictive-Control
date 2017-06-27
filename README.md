@@ -1,11 +1,13 @@
 # Model Predictive Control
 ## Introduction
 This project is to create a predictive model that controls self driving car staying in lanes from the environment around.
-Main language is C++.
+
+[Result Video](https://www.youtube.com/watch?v=N33DK5Sd-7M)
 
 ### Project Folder Structure
 1. ./src/main.cpp: main code structure
 2. ./src/MPC.cpp & MPC.h: Model Predictive Control calculation
+3. Language: C++
 
 ## Implementation 
 
@@ -19,7 +21,6 @@ For simplification, accleration values range from [-1,1] with positive is accele
 
 ### Cost Functions (in MPC.cpp)
 I set up cost functions for __cte, epsi, velocity, steering angle, and acceleration__ as below:
-
 ```
     fg[0] = 0;
     // Cost based on the reference state
@@ -44,7 +45,6 @@ I set up cost functions for __cte, epsi, velocity, steering angle, and accelerat
 
 ### Constraints for MPC in (MPC.cpp)
 The following equations are used to update the kinematic models
-
 ```
 x_(t+1) = x_t + v_t * cos(psi_t) * dt
 y_(t+1) = y_t + v_t * sin(psi_t) * dt
@@ -52,7 +52,6 @@ psi_(t+1) = psi_t + v_t * delta_t * dt / Lf
 v_(t+1) = v_t + a_t * dt
 cte_(t+1) = f(x_t) - y_t + (v_t * sin(epsi_t) * dt)
 epsi_(t+1) = psi_t - desired_psi_t + (v_t/L_f) * delta_t * dt
-
 ```
 With: 
 
